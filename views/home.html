@@ -1,0 +1,21 @@
+<div id="date-box" class=" white teal-text right col s12 m2">
+  {{Home.eventDate}}
+</div>
+<!--<div id="terms-box" class=" white teal-text left col s12 m2">
+  <a href="#!">{{Home.terms}}</a>
+</div>-->
+
+<section>
+    <div id="main-content" class="row">
+        <div id="logo" class="col s12 m6 offset-m3">
+        </div>
+        <div id="main-description" class="white-text col s12 m6 offset-m3 t-center m-top-s">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a vulputate dui. Fusce viverra eu augue a facilisis. Sed congue finibus purus quis consectetur. Integer porta mollis suscipit. Sed ac convallis tellus. Fusce mattis, sapien id tincidunt porttitor,
+            mauris mi ornare sem, id pharetra nunc neque vel dui. Integer ultricies tellus velit.
+        </div>
+        <div id="bubbles-container" class="col s12 m6 offset-m3 center m-top-s">
+            <div class="bubble red wow bounceIn  {{x.color + ' ' + x.textColor }}" data-wow-delay="{{x.dataDelay}}" ng-repeat="x in Home.bubbles">{{x.text}}</div>
+        </div>
+        
+    </div>
+</section>
