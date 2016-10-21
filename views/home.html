@@ -1,11 +1,14 @@
-<div id="spotify-tab" class="spotify card-panel" ng-show="Home.spotify">
+<div id="spotify-tab" class="spotify card-panel hide-on-med-and-down" ng-show="Home.spotify">
   <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3Acpvbruno%3Aplaylist%3A7784bBZRZBteWOtutqAUVi" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
 </div>
-<div id="spotify-control" class="spotify card-panel" style="top:5px;left:28px;" ng-click="Home.spotifyChange()">
+<div id="spotify-control" class="spotify card-panel hide-on-med-and-down" style="top:5px;left:28px;" ng-click="Home.spotifyChange()">
   <img src="assets/images/spotify.png" width="30px" class="left" /> <span class="right" style="margin-top:6px;">Abrir/Fechar Playlist Spotify: Hackathon</span>
 </div>
 <section class="full-height" ng-show="Home.step == 0">
-    <div id="date-box" class=" white teal-text right col s12 m2">
+    <div id="date-box" class=" white teal-text right col s12 m2 hide-on-med-and-down">
+        {{Home.eventDate}}
+    </div>
+    <div id="date-box" class=" white teal-text center col s12 hide-on-med-and-up">
         {{Home.eventDate}}
     </div>
     <!--<div id="terms-box" class=" white teal-text left col s12 m2">

@@ -129,3 +129,18 @@ body {}
   top:70px;
   cursor: pointer;
 }
+
+
+@media screen and (max-width:800px) {
+  #logo {
+    margin-top: 18px;
+    height: 81px;
+  }
+  .bubble-images {
+    width: 79px;
+    height: 79px;
+  }
+  .face-button {
+    margin-top: 10px;
+  }
+}
