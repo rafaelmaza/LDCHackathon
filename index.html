@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="assets/css/animate.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Oleo+Script:400,700&subset=latin-ext" rel="stylesheet">
 </head>
@@ -19,23 +19,13 @@
     <div data-ng-view></div>
 
 
-    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
             new WOW().init();
-
-            function setHeight() {
-                windowHeight = $(window).innerHeight();
-                $('body').css('min-height', windowHeight);
-            };
-            setHeight();
-
-            $(window).resize(function() {
-                setHeight();
-            });
         });
     </script>
-    <script src="assets/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <script src="//code.angularjs.org/1.5.5/angular.min.js?v=4"></script>
     <script src="assets/js/ui-bootstrap-tpls-2.1.3.min.js?v=4"></script>
     <script src="//code.angularjs.org/1.5.5/angular-route.min.js?v=4"></script>
@@ -44,6 +34,7 @@
     <script src="assets/js/ngMask.min.js?v=4"></script>
     <script src="assets/js/wow.js?v=4"></script>
     <script src="./app.js"></script>
+    <script src="services/helper.js"></script>
     <script src="controllers/homeController.js"></script>
 </body>
 

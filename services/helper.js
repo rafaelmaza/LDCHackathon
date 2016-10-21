@@ -14,6 +14,8 @@ function helperService() {
   };
 
   helper.backendUrl = '#';
+	helper.imagesPath = 'assets/images/';
+	helper.peopleIconsPath = helper.imagesPath + "people-icons/";
 
   helper.UFOptions = [
     {
