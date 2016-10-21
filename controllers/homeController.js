@@ -18,6 +18,7 @@ function HomeController($location, helperService, $cookies, $window, $http) {
         selectYears: 100
     });
     $('select').material_select();
+    this.spotify = false;
     this.step = 0;
     this.eventDate = "Próximo evento: 29/11/2016";
     this.terms = "Conhece nosso regulamento? Clique Aqui";
@@ -116,10 +117,21 @@ function HomeController($location, helperService, $cookies, $window, $http) {
 
     function peopleIconSelection(peopleIcon) {
         if (peopleIcon.selected == 0) {
-            peopleIcon.selected = 1
+            peopleIcon.selected = 1;
         } else {
-            peopleIcon.selected = 0
+            peopleIcon.selected = 0;
         }
+    }
+
+    this.spotifyChange = spotifyChange;
+
+    function spotifyChange() {
+      if(this.spotify) {
+        this.spotify = false;
+      }
+      else {
+        this.spotify = true;
+      }
     }
 
 }
