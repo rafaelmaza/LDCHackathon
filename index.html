@@ -5,6 +5,39 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
     <title></title>
+    <!--
+
+    ========== BEM VINDO AO NOSSO CÓDIGO FONTE ===============
+
+                          _..._
+                      .'     '.
+                      /`\     /`\    |\
+                      (__|     |__)|\  \\  /|
+                      (     "     ) \\ || //
+                      \         /   \\||//
+                      \   _   /  |\|`  /
+                       '.___.'   \____/
+                        (___)    (___)
+                      /`     `\  / /
+                      |         \/ /
+                      | |     |\  /
+                      | |     | "`
+                      | |     |
+                      | |     |
+                      |_|_____|
+                      (___)_____)
+                      /    \   |
+                      /   |\|   |
+                      //||\\  Y  |
+                      || || \\ |  |
+                      |/ \\ |\||  |
+                      \||__|__|
+                      (___|___)
+                      jgs  /   A   \
+                      /   / \   \
+                      \___/   \___/
+
+    -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="assets/css/animate.css" type="text/css" rel="stylesheet" media="screen,projection" />
@@ -22,6 +55,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+            $('.datepicker').pickadate({
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 15 // Creates a dropdown of 15 years to control year
+            });
             new WOW().init();
         });
     </script>

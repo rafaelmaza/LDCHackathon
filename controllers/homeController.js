@@ -13,6 +13,12 @@ function routes($routeProvider) {
 }
 
 function HomeController($location, helperService, $cookies, $window, $http) {
+    $('.datepicker').pickadate({
+        selectMonths: true,
+        selectYears: 100
+    });
+    $('select').material_select();
+    this.step = 0;
     this.eventDate = "Próximo evento: 29/11/2016";
     this.terms = "Conhece nosso regulamento? Clique Aqui";
     this.bubbles = [{
@@ -52,47 +58,68 @@ function HomeController($location, helperService, $cookies, $window, $http) {
     this.peopleIcons = [{
         fileName: "icon1.png",
         for: 3,
-        delay: "0.2s"
+        delay: "0.2s",
+        selected: 0
     }, {
         fileName: "icon2.png",
         for: 3,
-        delay: "0.5s"
+        delay: "0.5s",
+        selected: 0
     }, {
         fileName: "icon3.png",
         for: 3,
-        delay: "0.9s"
+        delay: "0.9s",
+        selected: 0
     }, {
         fileName: "icon4.png",
         for: 3,
-        delay: "0.3s"
+        delay: "0.3s",
+        selected: 0
     }, {
         fileName: "icon5.png",
         for: 3,
-        delay: "0.4s"
+        delay: "0.4s",
+        selected: 0
     }, {
         fileName: "icon6.png",
         for: 3,
-        delay: "0.8s"
+        delay: "0.8s",
+        selected: 0
     }, {
         fileName: "icon7.png",
         for: 3,
-        delay: "0.7s"
+        delay: "0.7s",
+        selected: 0
     }, {
         fileName: "icon8.png",
         for: 3,
-        delay: "0.2s"
+        delay: "0.2s",
+        selected: 0
     }, {
         fileName: "icon9.png",
         for: 3,
-        delay: "0.1s"
+        delay: "0.1s",
+        selected: 0
     }, {
         fileName: "icon10.png",
         for: 3,
-        delay: "1s"
+        delay: "1s",
+        selected: 0
     }, {
         fileName: "icon11.png",
         for: 3,
-        delay: "0.5s"
+        delay: "0.5s",
+        selected: 0
     }];
+
+    this.peopleIconSelection = peopleIconSelection
+
+    function peopleIconSelection(peopleIcon) {
+        if (peopleIcon.selected == 0) {
+            peopleIcon.selected = 1
+        } else {
+            peopleIcon.selected = 0
+        }
+    }
 
 }

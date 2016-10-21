@@ -1,11 +1,10 @@
-<div id="date-box" class=" white teal-text right col s12 m2">
-    {{Home.eventDate}}
-</div>
-<!--<div id="terms-box" class=" white teal-text left col s12 m2">
-  <a href="#!">{{Home.terms}}</a>
-</div>-->
-
-<section class="full-height">
+<section class="full-height" ng-show="Home.step == 0">
+    <div id="date-box" class=" white teal-text right col s12 m2">
+        {{Home.eventDate}}
+    </div>
+    <!--<div id="terms-box" class=" white teal-text left col s12 m2">
+    <a href="#!">{{Home.terms}}</a>
+  </div>-->
     <div id="main-content" class="row">
         <div id="logo" class="col s12 m6 offset-m3">
         </div>
@@ -19,26 +18,26 @@
 
         <div class="col s12 m4 offset-m4 center m-top-s">
             <hr>
-            <a class="btn-large center m-top-s col s12  teal accent-4"> Inscreva-se</a>
+            <a class="btn-large center m-top-s col s12  teal accent-4" ng-click="Home.step = Home.step + 1"> Inscreva-se</a>
         </div>
     </div>
     <br><br><br><br><br><br><br>
 </section>
-<section class="full-height steps" id="step-1">
+<section class="full-height steps wow bounceIn" id="step-1" ng-show="Home.step == 1">
     <h3 class="font-1 white-text center">O que melhor te representa?<br><small>(Clique nas imagens para escolher)</small></h3>
     <div class="row">
         <div class="col s12 m6 offset-m3 center">
-            <a class="btn-large" ng-click="Home.sexo = 'masculino'">Masculino</a>
-            <a class="btn-large" ng-click="Home.sexo = 'feminino'">Feminino</a>
+            <a class="btn-large" ng-click="Home.sexo = 'masculino'" ng-class="{sexSelected: Home.sexo == 'masculino'}">Masculino</a>
+            <a class="btn-large" ng-click="Home.sexo = 'feminino'" ng-class="{sexSelected: Home.sexo == 'feminino'}">Feminino</a>
         </div>
         <hr class="col s12 m-top-m">
         <div class="col s12 m6 offset-m3 center">
-            <a ng-repeat="x in Home.peopleIcons">
-                <img class="bubble-images wow bounceIn" width="100%" height="100%" src="{{Home.peopleIconsPath + x.fileName}}"  data-wow-delay="{{x.delay}}" />
-            </a>
+
+            <img ng-repeat="x in Home.peopleIcons" class="bubble-images wow bounceIn" ng-class="{selected: x.selected==1}" width="100%" height="100%" src="{{Home.peopleIconsPath + x.fileName}}" data-wow-delay="{{x.delay}}" ng-click="Home.peopleIconSelection(x)" />
+
         </div>
         <div class="col s12 m6 offset-m3 center m-top-m">
-            <a class="btn-large" >Próximo</a>
+            <a class="btn-large" ng-click="Home.step = Home.step + 1">Próximo</a>
 
         </div>
     </div>
@@ -48,4 +47,169 @@
 
     <br><br><br><br><br><br><br>
 
+</section>
+<section class="full-height steps wow bounceInRight" data-wow-delay="0.2s" data-wow-duration="1s" id="step-2" ng-show="Home.step > 1 && Home.step < 4">
+    <h3 class="font-1 white-text center">Queremos te conhecer</h3>
+    <div class="row m-top-m">
+        <!--  <div class="col s12 m2 offset-m1    card-panel p-all-m red darken-4">
+            <h4 class="less-p-all-m p-all-m white black-text">Você sabia?</h4>
+            <p class="m-top-m white-text">Na Johnson & Johnson desenvolvemos aplicações para uso médico, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor, libero quis consectetur porta, tellus felis ultricies tellus, tincidunt fringilla risus felis id elit.
+                Maecenas placerat pretium </p>
+        </div>-->
+        <div class="col s12 m4 offset-m4  card-panel offset-m1 p-all-m ">
+            <div class="center">
+                <div class="col s12 m8 offset-m2">
+                    <img src="assets/images/boy.png" alt="" class="circle responsive-img" ng-show="Home.sexo == 'masculino'">
+                    <img src="assets/images/girl.png" alt="" class="circle responsive-img" ng-show="Home.sexo == 'feminino'">
+                </div>
+                <div class="file-field input-field col s12">
+                    <div class="btn col s12 m6">
+                        <span>Selecione sua Imagem</span>
+                        <input type="file" multiple>
+                    </div>
+                    <button class="face-button white-text">Importar do facebook</button>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Adicione sua imagem de perfil" style="display:none;">
+                    </div>
+                </div>
+            </div>
+            <div class="m-top-s">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="icon_prefix" type="text" class="validate">
+                    <label for="icon_prefix">Nome completo</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">phone</i>
+                    <input id="icon_telephone" type="tel" class="validate">
+                    <label for="icon_telephone">Celular</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">email</i>
+                    <input id="icon_telephone" type="email" class="validate">
+                    <label for="icon_telephone">Email</label>
+                </div>
+                <div class="input-field col s12">
+                    <input type="date" class="datepicker" placeholder="Data de nascimento">
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="card-panel p-all-m col s12 m3 offset-m1 wow bounceInRight" ng-show="Home.step == 3">
+            <h4>O que gostaria de nos contar sobre você?</h4>
+
+            <div class="input-field col s12">
+                <i class="material-icons prefix">mode_edit</i>
+                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                <label for="icon_prefix2">Nos conte um pouco do que você gosta de fazer, no que gostaria de trabalhar...</label>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">code</i>
+                <input id="icon_prefix" type="text" class="validate">
+                <label for="icon_prefix">Github</label>
+            </div>
+            <div class="file-field input-field col s12">
+                <div class="btn col s12 m3">
+                    <span>File</span>
+                    <input type="file" multiple>
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Anexar curriculum">
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="col s12 m6 offset-m3 center m-top-m">
+        <a class="btn-large" ng-click="Home.step = Home.step - 1">Anterior</a>
+        <a class="btn-large" ng-click="Home.step = Home.step + 1">Próximo</a>
+
+    </div>
+    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
+</section>
+
+<section class="row full-height steps wow bounceIn" data-wow-delay="0.2s" data-wow-duration="1s" id="step-3" ng-show="Home.step == 4">
+    <div class="col s12 m6 offset-m3">
+        <div class="card">
+            <h4 class="center p-all-m">Inscrição para prova</h4></div>
+    </div>
+    <div class="col s12 m6 offset-m3">
+        <div class="card horizontal">
+            <div class="card-image">
+                <img src="assets/images/boy.png" alt="" class=" responsive-img" ng-show="Home.sexo == 'masculino'">
+                <img src="assets/images/girl.png" alt="" class=" responsive-img" ng-show="Home.sexo == 'feminino'">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <h4>Senhor Hamburgueiro</h4>
+                    <p>senhorham@example.com</p>
+                </div>
+                <div class="card-action">
+                    <p class="col s7 m7 l7" style="margin:0px;">(12) Hamburguer Feliz</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m6 offset-m3">
+        <div class="col s12 card-panel p-all-m">
+            <div class="input-field col s12">
+                <select class="browser-default">
+    <option value="" disabled selected>Local da prova</option>
+    <option value="1">ETEP Esplanada</option>
+    <option value="2">UNIVAP Centro</option>
+  </select>
+            </div>
+            <div class="input-field col s12">
+                <select class="browser-default">
+  <option value="" disabled selected>Escola de formação técnica</option>
+  <option value="1">ETEP</option>
+  <option value="2">UNIVAP</option>
+  <option value="3">Opção</option>
+</select>
+            </div>
+            <div class="input-field col s12 m-top-s">
+                <input id="outro" type="text" class="validate" placeholder="Outra Escola (Caso a sua não esteja na lista)">
+                <label for="outro">Outra</label>
+            </div>
+            <div class="input-field col s12">
+                <select class="browser-default">
+  <option value="" disabled selected>Formação técnica</option>
+  <option value="1">Informática</option>
+  <option value="2">Web Design</option>
+  <option value="3">Redes</option>
+</select>
+
+            </div>
+            <div class="input-field col s12 m-top-s">
+                <input id="outro2" type="text" class="validate" placeholder="Outra Formaçnao (Caso a sua não esteja na lista)">
+                <label for="outro2">Outra</label>
+            </div>
+            <div class="input-field col s12">
+                <select multiple>
+      <option value="" disabled selected>Selecione 1 ou mais opções</option>
+      <option value="1">Inglês</option>
+      <option value="2">Português</option>
+      <option value="3">Espanhol</option>
+    </select>
+                <label>Idiomas</label>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col s12 m6 offset-m3 center m-top-m">
+        <a class="btn-large" ng-click="Home.step = Home.step - 1">Anterior</a>
+        <a class="btn-large" ng-click="Home.step = Home.step + 1">Próximo</a>
+
+    </div>
+    <div class="clearfix"></div>
+    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
 </section>
