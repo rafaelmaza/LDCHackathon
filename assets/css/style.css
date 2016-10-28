@@ -130,6 +130,14 @@ body {}
   cursor: pointer;
 }
 
+.card.horizontal .card-image img {
+    max-width: 158px;
+    width: auto;
+}
+
+section {
+  margin-bottom: 0px;
+}
 
 @media screen and (max-width:800px) {
   #logo {

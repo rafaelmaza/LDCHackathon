@@ -3,7 +3,7 @@
   <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3Acpvbruno%3Aplaylist%3A7784bBZRZBteWOtutqAUVi" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
 </div>
 <div id="spotify-control" class="spotify card-panel hide-on-med-and-down" style="top:5px;left:28px;" ng-click="Home.spotifyChange()">
-  <img src="assets/images/spotify.png" width="30px" class="left" /> <span class="right" style="margin-top:6px;">Abrir/Fechar Playlist Spotify: Hackathon</span>
+  <img src="assets/images/spotify.png" width="30px" class="left" /> <span class="right" style="margin-top:6px;">Playlist Spotify: Hackathon</span>
 </div>
 <section class="full-height" ng-show="Home.step == 0">
     <div id="date-box" class=" white teal-text right col s12 m2 hide-on-med-and-down">
@@ -156,7 +156,7 @@
             <div class="card-image">
               <img src="assets/images/boy.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'masculino' && Home.form.picture == null">
               <img src="assets/images/girl.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'feminino' && Home.form.picture == null">
-              <img src="{{Home.form.picture}}" alt="" class="circle responsive-img" ng-show="Home.form.picture != null">
+              <img src="{{Home.form.picture}}" alt="" class="circle responsive-img" width="200px" height="200px" ng-show="Home.form.picture != null">
           </div>
             <div class="card-stacked">
                 <div class="card-content">
@@ -228,7 +228,8 @@
 
 
 
-<section class="row full-height steps wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1s" id="step-4" ng-show="Home.step == 5">
+<section class="row full-height steps wow bounceInUp" data-wow-delay="0.2s"
+data-wow-duration="1s" id="step-4" ng-show="Home.step == 5">
 <div class="col s12 m6 offset-m3">
   <div id="logo" class="col s12" style="margin-top:0px;">
   </div>
