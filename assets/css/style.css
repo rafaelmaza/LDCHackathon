@@ -186,7 +186,7 @@ form {
 @media screen and (max-width:800px) {
   .box {
     height: 100px;
-    margin: 52px 10px !important;
+    margin: 22px 0px !important;
   }
     #logo {
         margin-top: 18px;
