@@ -6,7 +6,8 @@ angular
 	  'ngCookies',
 		'ngMessages',
 		'naif.base64',
-		'facebook'
+		'facebook',
+		'ngVidBg'
   ])
   .config(routesConfig)
   .config(['$httpProvider', resetHeaders])

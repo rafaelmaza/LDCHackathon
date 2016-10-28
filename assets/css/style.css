@@ -4,7 +4,13 @@ body {}
 .full-height {
     background-position: bottom;
     background-repeat: repeat-x;
-    background-image: url('../images/home-bg.jpg');
+    background-image: url('../images/home-bg.png');
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#26a69a+0,26a69a+100&0.87+0,0.87+100 */
+  background: -moz-linear-gradient(top,  rgba(38,166,154,0.87) 0%, rgba(38,166,154,0.87) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(38,166,154,0.87) 0%,rgba(38,166,154,0.87) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(38,166,154,0.87) 0%,rgba(38,166,154,0.87) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de26a69a', endColorstr='#de26a69a',GradientType=0 ); /* IE6-9 */
+
 }
 
 .font-1 {
@@ -137,6 +143,14 @@ body {}
 
 section {
   margin-bottom: 0px;
+  position: absolute;
+  left:0px;
+  right:0px;
+  z-index: 100;
+}
+#spotify-tab, #spotify-control {
+  position: absolute;
+  z-index: 101;
 }
 
 @media screen and (max-width:800px) {

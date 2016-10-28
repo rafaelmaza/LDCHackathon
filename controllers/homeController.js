@@ -17,6 +17,21 @@ function HomeController($scope, $location, helperService, $cookies, $window, $ht
   vm.form = [];
   $scope.base64Picture = "";
 
+
+  $scope.resources = [
+              'assets/media/back.mp4',
+              'assets/media/back.mp4'
+          ];
+          $scope.poster = 'http://placehold.it/2000&text=you%20may%20want%20to%20have%20a%20poster';
+          $scope.fullScreen = true;
+          $scope.muted = true;
+          $scope.zIndex = '0';
+          $scope.playInfo = {};
+          $scope.pausePlay = true;
+
+
+
+
   /**
    * IntentLogin
    */
