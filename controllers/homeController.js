@@ -1,6 +1,6 @@
 angular
     .module('hackathon')
-    .controller('HomeController', ['$scope', 'helperService', '$location', '$cookies', '$window', '$http', HomeController])
+    .controller('HomeController', ['$scope',  '$location', 'helperService', '$cookies', '$window', '$http', 'Facebook', HomeController])
     .config(['$routeProvider', routes]);
 
 function routes($routeProvider) {
@@ -12,7 +12,70 @@ function routes($routeProvider) {
         });
 }
 
-function HomeController($location, helperService, $cookies, $window, $http) {
+function HomeController($scope, $location, helperService, $cookies, $window, $http, Facebook) {
+  var vm = this;
+  vm.form = [];
+  $scope.base64Picture = "";
+
+  /**
+   * IntentLogin
+   */
+  $scope.IntentLogin = function() {
+      Facebook.getLoginStatus(function(response) {
+          if (response.status == 'connected') {
+              $scope.logged = true;
+              $scope.me();
+          } else
+              $scope.login();
+      });
+  };
+
+  /**
+   * Login
+   */
+  $scope.login = function() {
+      Facebook.login(function(response) {
+          if (response.status == 'connected') {
+              $scope.logged = true;
+              $scope.me();
+          }
+
+      });
+  };
+
+  /**
+   * me
+   */
+  $scope.me = function() {
+      Facebook.api('/me?fields=name,email,age_range,gender,locale,picture',{fields: 'email,name,gender,locale,age_range,picture'}, function(response) {
+          $scope.$apply(function() {
+              $scope.user = response;
+              console.log(response);
+              vm.form.name = $scope.user.name;
+              vm.form.email = $scope.user.email;
+              vm.form.picture = "https://graph.facebook.com/" + $scope.user.id + "/picture?type=large";
+          });
+      });
+  };
+
+
+  /**
+   * Taking approach of Events
+   */
+  $scope.$on('Facebook:statusChange', function(ev, data) {
+      console.log('Status: ', data);
+      if (data.status == 'connected') {
+          $scope.$apply(function() {
+            console.log("logou");
+            $scope.me();
+          });
+      } else {
+          $scope.$apply(function() {
+              console.log("Não Logou");
+          });
+      }
+  });
+
     $('.datepicker').pickadate({
         selectMonths: true,
         selectYears: 100
@@ -54,9 +117,9 @@ function HomeController($location, helperService, $cookies, $window, $http) {
         dataDelay: "0.9s"
     }];
 
-    this.sexo = "masculino";
+    vm.form.sexo = "masculino";
     this.peopleIconsPath = helperService.peopleIconsPath
-    this.peopleIcons = [{
+    this.peopleIcons =[{
         fileName: "icon1.png",
         for: 3,
         delay: "0.2s",
@@ -111,7 +174,164 @@ function HomeController($location, helperService, $cookies, $window, $http) {
         for: 3,
         delay: "0.5s",
         selected: 0
-    }];
+    },
+    {
+        fileName: "icon12.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon13.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon14.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon15.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon16.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon17.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon18.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon19.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon20.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon21.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon22.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon23.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon24.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon25.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon26.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon27.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon28.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon29.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon30.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon31.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon32.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon33.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon34.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon35.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon36.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    },
+    {
+        fileName: "icon37.png",
+        for: 3,
+        delay: "1s",
+        selected: 0
+    }
+  ];
 
     this.peopleIconSelection = peopleIconSelection
 
@@ -132,6 +352,12 @@ function HomeController($location, helperService, $cookies, $window, $http) {
       else {
         this.spotify = true;
       }
+    }
+
+    vm.changeImage = changeImage;
+
+    function changeImage() {
+      vm.form.picture = "data:image/png;base64," + $scope.base64Picture.base64;
     }
 
 }

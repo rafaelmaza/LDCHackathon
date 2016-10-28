@@ -4,10 +4,15 @@ angular
 	.module('hackathon', [
 	  'ngRoute',
 	  'ngCookies',
-		'ngMessages'
+		'ngMessages',
+		'naif.base64',
+		'facebook'
   ])
   .config(routesConfig)
-  .config(['$httpProvider', resetHeaders]);
+  .config(['$httpProvider', resetHeaders])
+	.config(function(FacebookProvider) {
+		FacebookProvider.init('1798131777068500');
+ });
 
 function routesConfig($routeProvider) {
   $routeProvider

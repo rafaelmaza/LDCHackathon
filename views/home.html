@@ -1,4 +1,5 @@
-<div id="spotify-tab" class="spotify card-panel hide-on-med-and-down" ng-show="Home.spotify">
+<form name="Home.signupForm" data-ng-submit="Home.submitSignupForm(Home.form)">
+  <div id="spotify-tab" class="spotify card-panel hide-on-med-and-down" ng-show="Home.spotify">
   <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3Acpvbruno%3Aplaylist%3A7784bBZRZBteWOtutqAUVi" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
 </div>
 <div id="spotify-control" class="spotify card-panel hide-on-med-and-down" style="top:5px;left:28px;" ng-click="Home.spotifyChange()">
@@ -36,11 +37,11 @@
     <h3 class="font-1 white-text center">O que melhor te representa?<br><small>(Clique nas imagens para escolher)</small></h3>
     <div class="row">
         <div class="col s12 m6 offset-m3 center">
-            <a class="btn-large" ng-click="Home.sexo = 'masculino'" ng-class="{sexSelected: Home.sexo == 'masculino'}">Masculino</a>
-            <a class="btn-large" ng-click="Home.sexo = 'feminino'" ng-class="{sexSelected: Home.sexo == 'feminino'}">Feminino</a>
+            <a class="btn-large blue" ng-click="Home.form.sexo = 'masculino'" ng-class="{sexSelected: Home.form.sexo == 'masculino'}">Masculino</a>
+            <a class="btn-large pink" ng-click="Home.form.sexo = 'feminino'" ng-class="{sexSelected: Home.form.sexo == 'feminino'}">Feminino</a>
         </div>
         <hr class="col s12 m-top-m">
-        <div class="col s12 m6 offset-m3 center">
+        <div class="col s12 m10 offset-m1 center">
 
             <img ng-repeat="x in Home.peopleIcons" class="bubble-images wow bounceIn" ng-class="{selected: x.selected==1}" width="100%" height="100%" src="{{Home.peopleIconsPath + x.fileName}}" data-wow-delay="{{x.delay}}" ng-click="Home.peopleIconSelection(x)" />
 
@@ -68,34 +69,38 @@
         <div class="col s12 m4 offset-m4  card-panel offset-m1 p-all-m ">
             <div class="center">
                 <div class="col s12 m8 offset-m2">
-                    <img src="assets/images/boy.png" alt="" class="circle responsive-img" ng-show="Home.sexo == 'masculino'">
-                    <img src="assets/images/girl.png" alt="" class="circle responsive-img" ng-show="Home.sexo == 'feminino'">
+                    <img src="assets/images/boy.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'masculino' && Home.form.picture == null">
+                    <img src="assets/images/girl.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'feminino' && Home.form.picture == null">
+                    <img src="{{Home.form.picture}}" alt="" class="circle responsive-img" width="200px" height="200px" ng-show="Home.form.picture != null">
                 </div>
-                <div class="file-field input-field col s12">
-                    <div class="btn col s12 m5">
+                <div class="file-field input-field col s6">
+                    <div class="btn col s12 m12">
                         <span>Selecione sua Imagem</span>
-                        <input type="file" multiple>
+                        <input class="form-control validate" data-ng-model="base64Picture" ng-change="Home.changeImage()" type="file" name="profilePicture" base-sixty-four-input maxsize="3000" accept="image/*"></input>
+                        <span ng-show="Home.form.picture.$error.maxsize">O tamanho máximo da imagem é 2mb</span>
                     </div>
-                    <button class="face-button white-text">Importar do facebook</button>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text" placeholder="Adicione sua imagem de perfil" style="display:none;">
                     </div>
+                </div>
+                <div class="input-field col s6">
+                  <button class="face-button white-text" ng-click="IntentLogin()">Importar do facebook</button>
                 </div>
             </div>
             <div class="m-top-s">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="icon_prefix" type="text" class="validate">
+                    <input id="icon_prefix" id="name" data-ng-model="Home.form.name" type="text" class="validate">
                     <label for="icon_prefix">Nome completo</label>
                 </div>
                 <div class="input-field col s12">
                     <i class="material-icons prefix">phone</i>
-                    <input id="icon_telephone" type="tel" class="validate">
+                    <input id="icon_telephone" data-ng-model="Home.form.cel" type="tel" class="validate">
                     <label for="icon_telephone">Celular</label>
                 </div>
                 <div class="input-field col s12">
                     <i class="material-icons prefix">email</i>
-                    <input id="icon_telephone" type="email" class="validate">
+                    <input id="icon_telephone" data-ng-model="Home.form.email" type="email" class="validate">
                     <label for="icon_telephone">Email</label>
                 </div>
                 <div class="input-field col s12">
@@ -111,15 +116,15 @@
 
             <div class="input-field col s12">
                 <i class="material-icons prefix">mode_edit</i>
-                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                <textarea id="icon_prefix2" data-ng-model="Home.form.freeText" class="materialize-textarea"></textarea>
                 <label for="icon_prefix2">Nos conte um pouco do que você gosta de fazer, no que gostaria de trabalhar...</label>
             </div>
             <div class="input-field col s12">
                 <i class="material-icons prefix">code</i>
-                <input id="icon_prefix" type="text" class="validate">
+                <input id="icon_prefix" data-ng-model="Home.form.github" type="text" class="validate">
                 <label for="icon_prefix">Github</label>
             </div>
-            <div class="file-field input-field col s12">
+            <!--<div class="file-field input-field col s12">
                 <div class="btn col s12 m3">
                     <span>File</span>
                     <input type="file" multiple>
@@ -127,7 +132,7 @@
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text" placeholder="Anexar curriculum">
                 </div>
-            </div>
+            </div>-->
 
 
         </div>
@@ -141,27 +146,25 @@
     </div>
     <br><br><br><br><br><br><br>
     <br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br>
+
 </section>
 
 <section class="row full-height steps wow bounceIn" data-wow-delay="0.2s" data-wow-duration="1s" id="step-3" ng-show="Home.step == 4">
-    <div class="col s12 m6 offset-m3">
-        <div class="card">
-            <h4 class="center p-all-m">Inscrição para prova</h4></div>
-    </div>
+
     <div class="col s12 m6 offset-m3">
         <div class="card horizontal">
             <div class="card-image">
-                <img src="assets/images/boy.png" alt="" class=" responsive-img" ng-show="Home.sexo == 'masculino'">
-                <img src="assets/images/girl.png" alt="" class=" responsive-img" ng-show="Home.sexo == 'feminino'">
-            </div>
+              <img src="assets/images/boy.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'masculino' && Home.form.picture == null">
+              <img src="assets/images/girl.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'feminino' && Home.form.picture == null">
+              <img src="{{Home.form.picture}}" alt="" class="circle responsive-img" ng-show="Home.form.picture != null">
+          </div>
             <div class="card-stacked">
                 <div class="card-content">
-                    <h4>Senhor Hamburgueiro</h4>
-                    <p>senhorham@example.com</p>
+                    <h4>{{Home.form.name}}</h4>
+                    <p>{{Home.form.email}}</p>
                 </div>
                 <div class="card-action">
-                    <p class="col s7 m7 l7" style="margin:0px;">(12) Hamburguer Feliz</p>
+                    <p class="col s7 m7 l7" style="margin:0px;">{{Home.form.cel}}</p>
                 </div>
             </div>
         </div>
@@ -169,14 +172,14 @@
     <div class="col s12 m6 offset-m3">
         <div class="col s12 card-panel p-all-m">
             <div class="input-field col s12">
-                <select class="browser-default">
+                <select class="browser-default" data-ng-model="Home.form.testPlace">
     <option value="" disabled selected>Local da prova</option>
     <option value="1">ETEP Esplanada</option>
     <option value="2">UNIVAP Centro</option>
   </select>
             </div>
             <div class="input-field col s12">
-                <select class="browser-default">
+                <select class="browser-default" data-ng-model="Home.form.school">
   <option value="" disabled selected>Escola de formação técnica</option>
   <option value="1">ETEP</option>
   <option value="2">UNIVAP</option>
@@ -184,11 +187,11 @@
 </select>
             </div>
             <div class="input-field col s12 m-top-s">
-                <input id="outro" type="text" class="validate" placeholder="Outra Escola (Caso a sua não esteja na lista)">
+                <input id="outro" type="text" class="validate" data-ng-model="Home.form.schoolOther" placeholder="Outra Escola (Caso a sua não esteja na lista)">
                 <label for="outro">Outra</label>
             </div>
             <div class="input-field col s12">
-                <select class="browser-default">
+                <select class="browser-default" data-ng-model="Home.form.course">
   <option value="" disabled selected>Formação técnica</option>
   <option value="1">Informática</option>
   <option value="2">Web Design</option>
@@ -197,11 +200,11 @@
 
             </div>
             <div class="input-field col s12 m-top-s">
-                <input id="outro2" type="text" class="validate" placeholder="Outra Formaçnao (Caso a sua não esteja na lista)">
+                <input id="outro2" type="text" class="validate" placeholder="Outra Formação (Caso a sua não esteja na lista)">
                 <label for="outro2">Outra</label>
             </div>
             <div class="input-field col s12">
-                <select multiple>
+                <select multiple data-ng-model="Home.form.language">
       <option value="" disabled selected>Selecione 1 ou mais opções</option>
       <option value="1">Inglês</option>
       <option value="2">Português</option>
@@ -220,7 +223,7 @@
     <div class="clearfix"></div>
     <br><br><br><br><br><br><br>
     <br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br>
+
 </section>
 
 
@@ -248,5 +251,6 @@
 <div class="clearfix"></div>
 <br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br>
+
 </section>
+</form>
