@@ -1,150 +1,164 @@
 <vid-bg resources="resources" class="hide-on-med-and-down" poster="poster" full-screen="fullScreen" muted="muted" z-index="zIndex" play-info="playInfo" pause-play="pausePlay"></vid-bg>
 <form name="Home.signupForm" data-ng-submit="Home.submitSignupForm(Home.form)">
-  <div id="spotify-tab" class="spotify card-panel hide-on-med-and-down" ng-show="Home.spotify">
-  <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3Acpvbruno%3Aplaylist%3A7784bBZRZBteWOtutqAUVi" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
-</div>
-<div id="spotify-control" class="spotify card-panel hide-on-med-and-down" style="top:5px;left:28px;" ng-click="Home.spotifyChange()">
-  <img src="assets/images/spotify.png" width="30px" class="left" /> <span class="right" style="margin-top:6px;">Playlist Spotify: Hackathon</span>
-</div>
-<section class="full-height" ng-show="Home.step == 0">
-    <div id="date-box" class=" white teal-text right col s12 m2 hide-on-med-and-down">
-        {{Home.eventDate}}
+    <div id="spotify-tab" class="spotify card-panel hide-on-med-and-down" ng-show="Home.spotify">
+        <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3Acpvbruno%3Aplaylist%3A7784bBZRZBteWOtutqAUVi" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
     </div>
-    <div id="date-box" class=" white teal-text center col s12 hide-on-med-and-up">
-        {{Home.eventDate}}
+    <div id="spotify-control" class="spotify card-panel hide-on-med-and-down" style="top:5px;left:28px;" ng-click="Home.spotifyChange()">
+        <img src="assets/images/spotify.png" width="30px" class="left" /> <span class="right" style="margin-top:6px;">Playlist Spotify: Hackathon</span>
     </div>
-    <!--<div id="terms-box" class=" white teal-text left col s12 m2">
+    <section class="full-height" ng-show="Home.step == 0">
+        <div id="date-box" class=" white teal-text right col s12 m2 hide-on-med-and-down">
+            {{Home.eventDate}}
+        </div>
+        <div id="date-box" class=" white teal-text center col s12 hide-on-med-and-up">
+            {{Home.eventDate}}
+        </div>
+        <!--<div id="terms-box" class=" white teal-text left col s12 m2">
     <a href="#!">{{Home.terms}}</a>
   </div>-->
-    <div id="main-content" class="row">
-        <div id="logo" class="col s12 m6 offset-m3">
+        <div id="main-content" class="row">
+            <div id="logo" class="col s12 m6 offset-m3">
+            </div>
+            <div id="main-description" class="white-text col s12 m6 offset-m3 t-center m-top-s">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a vulputate dui. Fusce viverra eu augue a facilisis. Sed congue finibus purus quis consectetur. Integer porta mollis suscipit. Sed ac convallis tellus. Fusce mattis, sapien id tincidunt porttitor,
+                mauris mi ornare sem, id pharetra nunc neque vel dui. Integer ultricies tellus velit.
+            </div>
+            <div id="bubbles-container" class="col s12 m6 offset-m3 center m-top-s">
+                <div class="bubble red wow bounceIn  {{x.color + ' ' + x.textColor }}" data-wow-delay="{{x.dataDelay}}" ng-repeat="x in Home.bubbles">{{x.text}}</div>
+            </div>
+
+            <div class="col s12 m4 offset-m4 center m-top-s">
+                <hr>
+                <a class="btn-large center m-top-s col s12  teal accent-4" ng-click="Home.step = Home.step + 1"> Inscreva-se</a>
+            </div>
         </div>
-        <div id="main-description" class="white-text col s12 m6 offset-m3 t-center m-top-s">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a vulputate dui. Fusce viverra eu augue a facilisis. Sed congue finibus purus quis consectetur. Integer porta mollis suscipit. Sed ac convallis tellus. Fusce mattis, sapien id tincidunt porttitor,
-            mauris mi ornare sem, id pharetra nunc neque vel dui. Integer ultricies tellus velit.
+
+    </section>
+    <section class="full-height steps wow bounceIn" id="step-1" ng-show="Home.step == 1">
+        <h3 class="font-1 white-text center">O que melhor te representa?</h3>
+        <div class="row">
+            <div class="col s12 m6 offset-m3 center">
+                <a class="btn-large blue" ng-click="Home.form.sexo = 'masculino'" ng-class="{sexSelected: Home.form.sexo == 'masculino'}">Masculino</a>
+                <a class="btn-large pink" ng-click="Home.form.sexo = 'feminino'" ng-class="{sexSelected: Home.form.sexo == 'feminino'}">Feminino</a>
+            </div>
+            <div class="col s12 m-top-l center">
+                <div class="col s12 m3 offset-m2 box card" ng-drop="true" ng-drop-success="onDropLike($data,$event)">
+                    <h4 class="white-text hide-on-med-and-down">Arraste 3 ícones que te represente</h4>
+                    <h4 class="white-text hide-on-med-and-up">Clique em 3 ícones que te represente</h4>
+                    <img ng-repeat="y in droppedLike" class="bubble-images" width="100%" height="100%" src="{{Home.peopleIconsPath + y.fileName}}" />
+                </div>
+                <div class="col s12 hide-on-med-and-up no-padding">
+                  <img ng-click="onDropLike(xx,null)" ng-repeat="xx in Home.peopleIcons" class="bubble-images bubble-little wow bounceIn " width="100%" height="100%" src="{{Home.peopleIconsPath + xx.fileName}}" data-wow-delay="{{xx.delay}}"/>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col s12 m3 box card" ng-drop="true" ng-drop-success="onDropDislike($data,$event)">
+                    <h4 class="white-text hide-on-med-and-down">Arraste 3 ícones que não te represente</h4>
+                    <h4 class="white-text hide-on-med-and-up">Clique em 3 ícones que não te represente</h4>
+                    <img ng-repeat="z in droppedDislike" class="bubble-images" width="100%" height="100%" src="{{Home.peopleIconsPath + z.fileName}}" />
+
+                </div>
+                <div class="col s12 hide-on-med-and-up no-padding">
+                    <img ng-repeat="xxx in Home.peopleIcons" ng-click="onDropDislike(xxx,null)" class="bubble-images bubble-little wow bounceIn hide-on-med-and-up" width="100%" height="100%" src="{{Home.peopleIconsPath + xxx.fileName}}" data-wow-delay="{{xxx.delay}}" />
+                </div>
+                <div class="col s12 m2 box card" ng-drop="true" ng-drop-success="onDropMain($data,$event)">
+                    <h4 class="white-text hide-on-med-and-down">Arraste 1 ícone que mais te represente</h4>
+                    <h4 class="white-text hide-on-med-and-up">Clique em 1 ícone que mais te represente</h4>
+                    <img ng-repeat="h in droppedMain" class="bubble-images" width="100%" height="100%" src="{{Home.peopleIconsPath + h.fileName}}"  />
+
+                </div>
+                <div class="col s12 hide-on-med-and-up no-padding">
+                    <img ng-repeat="xxxx in Home.peopleIcons" ng-click="onDropMain(xxxx,null)" class="bubble-images bubble-little wow bounceIn hide-on-med-and-up" width="100%" height="100%" src="{{Home.peopleIconsPath + xxxx.fileName}}" data-wow-delay="{{xxxx.delay}}" />
+                </div>
+            </div>
+            <hr class="col s12 m-top-m">
+            <div class="col s12 m10 offset-m1 center hide-on-med-and-down">
+
+                <img ng-drag="true" ng-drag-data="{{x}}" ng-drag-success="onDragComplete($data,$event)" ng-center-anchor="true" ng-repeat="x in Home.peopleIcons" class="bubble-images wow bounceIn" width="100%" height="100%" src="{{Home.peopleIconsPath + x.fileName}}"
+                    data-wow-delay="{{x.delay}}" />
+
+            </div>
+            <div class="col s12 m6 offset-m3 center m-top-m">
+                <a class="btn-large" ng-click="Home.step = Home.step + 1">Próximo</a>
+
+            </div>
         </div>
-        <div id="bubbles-container" class="col s12 m6 offset-m3 center m-top-s">
-            <div class="bubble red wow bounceIn  {{x.color + ' ' + x.textColor }}" data-wow-delay="{{x.dataDelay}}" ng-repeat="x in Home.bubbles">{{x.text}}</div>
-        </div>
-
-        <div class="col s12 m4 offset-m4 center m-top-s">
-            <hr>
-            <a class="btn-large center m-top-s col s12  teal accent-4" ng-click="Home.step = Home.step + 1"> Inscreva-se</a>
-        </div>
-    </div>
-
-</section>
-<section class="full-height steps wow bounceIn" id="step-1" ng-show="Home.step == 1">
-    <h3 class="font-1 white-text center">O que melhor te representa?</h3>
-    <div class="row">
-        <div class="col s12 m6 offset-m3 center">
-            <a class="btn-large blue" ng-click="Home.form.sexo = 'masculino'" ng-class="{sexSelected: Home.form.sexo == 'masculino'}">Masculino</a>
-            <a class="btn-large pink" ng-click="Home.form.sexo = 'feminino'" ng-class="{sexSelected: Home.form.sexo == 'feminino'}">Feminino</a>
-        </div>
-        <div class="col s12 m-top-l center">
-        <div class="col s12 m3 offset-m2 box card" ng-drop="true" ng-drop-success="onDropLike($data,$event)">
-          <h4 class="white-text">Arraste 3 ícones que te represente</h4>
-          <img ng-repeat="y in droppedLike" class="bubble-images wow bounceIn"  width="100%" height="100%" src="{{Home.peopleIconsPath + y.fileName}}" data-wow-delay="0s" />
-        </div>
-        <div class="col s12 m3 box card" ng-drop="true" ng-drop-success="onDropDislike($data,$event)">
-          <h4 class="white-text">Arraste 3 ícones que não te represente</h4>
-          <img ng-repeat="z in droppedDislike" class="bubble-images wow bounceIn"  width="100%" height="100%" src="{{Home.peopleIconsPath + z.fileName}}" data-wow-delay="0s" />
-
-        </div>
-        <div class="col s12 m2 box card" ng-drop="true" ng-drop-success="onDropMain($data,$event)">
-          <h4 class="white-text">Arraste 1 ícone que mais te representa</h4>
-          <img ng-repeat="h in droppedMain" class="bubble-images wow bounceIn"  width="100%" height="100%" src="{{Home.peopleIconsPath + h.fileName}}" data-wow-delay="0s" />
-
-        </div>
-      </div>
-        <hr class="col s12 m-top-m">
-        <div class="col s12 m10 offset-m1 center">
-
-            <img ng-drag="true" ng-drag-data="{{x}}" ng-drag-success="onDragComplete($data,$event)" ng-center-anchor="true"  ng-repeat="x in Home.peopleIcons" class="bubble-images wow bounceIn"  width="100%" height="100%" src="{{Home.peopleIconsPath + x.fileName}}" data-wow-delay="{{x.delay}}"/>
-
-        </div>
-        <div class="col s12 m6 offset-m3 center m-top-m">
-            <a class="btn-large" ng-click="Home.step = Home.step + 1" >Próximo</a>
-
-        </div>
-    </div>
 
 
 
 
 
 
-</section>
-<section class="full-height steps wow bounceInRight" data-wow-delay="0.2s" data-wow-duration="1s" id="step-2" ng-show="Home.step > 1 && Home.step < 4">
-    <h3 class="font-1 white-text center">Queremos te conhecer</h3>
-    <div class="row m-top-m">
-        <!--  <div class="col s12 m2 offset-m1    card-panel p-all-m red darken-4">
+    </section>
+    <section class="full-height steps wow bounceInRight" data-wow-delay="0.2s" data-wow-duration="1s" id="step-2" ng-show="Home.step > 1 && Home.step < 4">
+        <h3 class="font-1 white-text center">Queremos te conhecer</h3>
+        <div class="row m-top-m">
+            <!--  <div class="col s12 m2 offset-m1    card-panel p-all-m red darken-4">
             <h4 class="less-p-all-m p-all-m white black-text">Você sabia?</h4>
             <p class="m-top-m white-text">Na Johnson & Johnson desenvolvemos aplicações para uso médico, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor, libero quis consectetur porta, tellus felis ultricies tellus, tincidunt fringilla risus felis id elit.
                 Maecenas placerat pretium </p>
         </div>-->
-        <div class="col s12 m6 offset-m3">
-        <div class="col s12 m10 card-panel offset-m1 p-all-m ">
-            <div class="center">
-                <div class="col s12 m8 offset-m2">
-                    <img src="assets/images/boy.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'masculino' && Home.form.picture == null">
-                    <img src="assets/images/girl.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'feminino' && Home.form.picture == null">
-                    <img src="{{Home.form.picture}}" alt="" class="circle responsive-img profile-picture" width="200px" height="200px" ng-show="Home.form.picture != null">
-                </div>
-                <div class="file-field input-field col s12 m6">
-                    <div class="btn col s12 m12">
-                        <span>Selecione sua Imagem</span>
-                        <input class="form-control validate" data-ng-model="base64Picture" ng-change="Home.changeImage()" type="file" name="profilePicture" base-sixty-four-input maxsize="3000" accept="image/*"></input>
-                        <span ng-show="Home.form.picture.$error.maxsize">O tamanho máximo da imagem é 2mb</span>
+            <div class="col s12 m6 offset-m3">
+                <div class="col s12 m10 card-panel offset-m1 p-all-m ">
+                    <div class="center">
+                        <div class="col s12 m8 offset-m2">
+                            <img src="assets/images/boy.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'masculino' && Home.form.picture == null">
+                            <img src="assets/images/girl.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'feminino' && Home.form.picture == null">
+                            <img src="{{Home.form.picture}}" alt="" class="circle responsive-img profile-picture" width="200px" height="200px" ng-show="Home.form.picture != null">
+                        </div>
+                        <div class="file-field input-field col s12 m6">
+                            <div class="btn col s12 m12">
+                                <span>Selecione sua Imagem</span>
+                                <input class="form-control validate" data-ng-model="base64Picture" ng-change="Home.changeImage()" type="file" name="profilePicture" base-sixty-four-input maxsize="3000" accept="image/*"></input>
+                                <span ng-show="Home.form.picture.$error.maxsize">O tamanho máximo da imagem é 2mb</span>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Adicione sua imagem de perfil" style="display:none;">
+                            </div>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <button class="face-button white-text" ng-click="IntentLogin()">Importar do facebook</button>
+                        </div>
                     </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" placeholder="Adicione sua imagem de perfil" style="display:none;">
+                    <div class="m-top-s">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="icon_prefix" id="name" data-ng-model="Home.form.name" type="text" class="validate">
+                            <label for="icon_prefix">Nome completo *</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">phone</i>
+                            <input id="icon_telephone" data-ng-model="Home.form.cel" type="tel" class="validate">
+                            <label for="icon_telephone">Celular</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">email</i>
+                            <input id="icon_telephone" data-ng-model="Home.form.email" type="email" class="validate">
+                            <label for="icon_telephone">Email *</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input type="date" class="datepicker" materialize-date-picker readonly data-ng-model="Home.form.date" placeholder="Data de nascimento *">
+                        </div>
+
                     </div>
-                </div>
-                <div class="input-field col s12 m6">
-                  <button class="face-button white-text" ng-click="IntentLogin()">Importar do facebook</button>
-                </div>
-            </div>
-            <div class="m-top-s">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="icon_prefix" id="name" data-ng-model="Home.form.name" type="text" class="validate">
-                    <label for="icon_prefix">Nome completo *</label>
-                </div>
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">phone</i>
-                    <input id="icon_telephone" data-ng-model="Home.form.cel" type="tel" class="validate">
-                    <label for="icon_telephone">Celular</label>
-                </div>
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">email</i>
-                    <input id="icon_telephone" data-ng-model="Home.form.email" type="email" class="validate">
-                    <label for="icon_telephone">Email *</label>
-                </div>
-                <div class="input-field col s12">
-                    <input type="date" class="datepicker" materialize-date-picker readonly data-ng-model="Home.form.date" placeholder="Data de nascimento *">
-                </div>
-
-            </div>
 
 
-        </div>
-      </div>
-      <div class="col s12 m3">
-        <div class="card-panel p-all-m col s12   wow bounceInRight" ng-show="Home.step == 3">
-            <h4>O que gostaria de nos contar sobre você?</h4>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="card-panel p-all-m col s12   wow bounceInRight" ng-show="Home.step == 3">
+                    <h4>O que gostaria de nos contar sobre você?</h4>
 
-            <div class="input-field col s12">
-                <i class="material-icons prefix">mode_edit</i>
-                <textarea id="icon_prefix2" data-ng-model="Home.form.freeText" class="materialize-textarea"></textarea>
-                <label for="icon_prefix2">Nos conte um pouco do que você gosta de fazer, no que gostaria de trabalhar...</label>
-            </div>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">code</i>
-                <input id="icon_prefix" data-ng-model="Home.form.github" type="text" class="validate">
-                <label for="icon_prefix">Github</label>
-            </div>
-            <!--<div class="file-field input-field col s12">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        <textarea id="icon_prefix2" data-ng-model="Home.form.freeText" class="materialize-textarea"></textarea>
+                        <label for="icon_prefix2">Nos conte um pouco do que você gosta de fazer, no que gostaria de trabalhar...</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">code</i>
+                        <input id="icon_prefix" data-ng-model="Home.form.github" type="text" class="validate">
+                        <label for="icon_prefix">Github</label>
+                    </div>
+                    <!--<div class="file-field input-field col s12">
                 <div class="btn col s12 m3">
                     <span>File</span>
                     <input type="file" multiple>
@@ -155,125 +169,124 @@
             </div>-->
 
 
-        </div>
-      </div>
-    </div>
-
-
-    <div class="col s12 m6 offset-m3 center ">
-        <a class="btn-large" ng-click="Home.step = Home.step - 1">Anterior</a>
-        <button class="btn-large" ng-click="Home.step = Home.step + 1">Próximo</button>
-
-    </div>
-<br>
-<br>
-
-
-</section>
-
-<section class="row full-height steps wow bounceIn" data-wow-delay="0.2s" data-wow-duration="1s" id="step-3" ng-show="Home.step == 4">
-
-    <div class="col s12 m6 offset-m3">
-        <div class="card horizontal">
-            <div class="card-image">
-              <img src="assets/images/boy.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'masculino' && Home.form.picture == null">
-              <img src="assets/images/girl.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'feminino' && Home.form.picture == null">
-              <img src="{{Home.form.picture}}" alt="" class="circle responsive-img" width="200px" height="200px" ng-show="Home.form.picture != null">
-          </div>
-            <div class="card-stacked">
-                <div class="card-content">
-                    <h4>{{Home.form.name}}</h4>
-                    <p>{{Home.form.email}}</p>
-                </div>
-                <div class="card-action">
-                    <p class="col s7 m7 l7" style="margin:0px;">{{Home.form.cel}}</p>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col s12 m6 offset-m3">
-        <div class="col s12 card-panel p-all-m">
-            <div class="input-field col s12">
-                <select class="browser-default" data-ng-model="Home.form.testPlace">
+
+
+        <div class="col s12 m6 offset-m3 center ">
+            <a class="btn-large" ng-click="Home.step = Home.step - 1">Anterior</a>
+            <button class="btn-large" ng-click="Home.step = Home.step + 1">Próximo</button>
+
+        </div>
+        <br>
+        <br>
+
+
+    </section>
+
+    <section class="row full-height steps wow bounceIn" data-wow-delay="0.2s" data-wow-duration="1s" id="step-3" ng-show="Home.step == 4">
+
+        <div class="col s12 m6 offset-m3">
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img src="assets/images/boy.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'masculino' && Home.form.picture == null">
+                    <img src="assets/images/girl.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'feminino' && Home.form.picture == null">
+                    <img src="{{Home.form.picture}}" alt="" class="circle responsive-img" width="200px" height="200px" ng-show="Home.form.picture != null">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <h4>{{Home.form.name}}</h4>
+                        <p>{{Home.form.email}}</p>
+                    </div>
+                    <div class="card-action">
+                        <p class="col s7 m7 l7" style="margin:0px;">{{Home.form.cel}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6 offset-m3">
+            <div class="col s12 card-panel p-all-m">
+                <div class="input-field col s12">
+                    <select class="browser-default" data-ng-model="Home.form.testPlace">
     <option value="" disabled selected>Local da prova</option>
     <option value="1">ETEP Esplanada</option>
     <option value="2">UNIVAP Centro</option>
   </select>
-            </div>
-            <div class="input-field col s12">
-                <select class="browser-default" data-ng-model="Home.form.school">
+                </div>
+                <div class="input-field col s12">
+                    <select class="browser-default" data-ng-model="Home.form.school">
   <option value="" disabled selected>Escola de formação técnica</option>
   <option value="1">ETEP</option>
   <option value="2">UNIVAP</option>
   <option value="3">Opção</option>
 </select>
-            </div>
-            <div class="input-field col s12 m-top-s">
-                <input id="outro" type="text" class="validate" data-ng-model="Home.form.schoolOther" placeholder="Outra Escola (Caso a sua não esteja na lista)">
-                <label for="outro">Outra</label>
-            </div>
-            <div class="input-field col s12">
-                <select class="browser-default" data-ng-model="Home.form.course">
+                </div>
+                <div class="input-field col s12 m-top-s">
+                    <input id="outro" type="text" class="validate" data-ng-model="Home.form.schoolOther" placeholder="Outra Escola (Caso a sua não esteja na lista)">
+                    <label for="outro">Outra</label>
+                </div>
+                <div class="input-field col s12">
+                    <select class="browser-default" data-ng-model="Home.form.course">
   <option value="" disabled selected>Formação técnica</option>
   <option value="1">Informática</option>
   <option value="2">Web Design</option>
   <option value="3">Redes</option>
 </select>
 
-            </div>
-            <div class="input-field col s12 m-top-s">
-                <input id="outro2" type="text" class="validate" placeholder="Outra Formação (Caso a sua não esteja na lista)">
-                <label for="outro2">Outra</label>
-            </div>
-            <div class="input-field col s12">
-                <select multiple data-ng-model="Home.form.language">
+                </div>
+                <div class="input-field col s12 m-top-s">
+                    <input id="outro2" type="text" class="validate" placeholder="Outra Formação (Caso a sua não esteja na lista)">
+                    <label for="outro2">Outra</label>
+                </div>
+                <div class="input-field col s12">
+                    <select multiple data-ng-model="Home.form.language">
       <option value="" disabled selected>Selecione 1 ou mais opções</option>
       <option value="1">Inglês</option>
       <option value="2">Português</option>
       <option value="3">Espanhol</option>
     </select>
-                <label>Idiomas</label>
+                    <label>Idiomas</label>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col s12 m6 offset-m3 center m-top-m">
+            <a class="btn-large" ng-click="Home.step = Home.step - 1">Anterior</a>
+            <button class="btn-large" ng-click="Home.step = Home.step + 1" type="submit" name="action">Finalizar</button>
+
+        </div>
+        <div class="clearfix"></div>
+
+
+
+    </section>
+
+
+
+    <section class="row full-height steps wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1s" id="step-4" ng-show="Home.step == 5">
+        <div class="col s12 m6 offset-m3">
+            <div id="logo" class="col s12" style="margin-top:0px;">
+            </div>
+            <h3 class="font-1 white-text center">Parabéns!  Você ja está participando do processo seletivo.</h3>
+        </div>
+        <div class="col s12 m6 offset-m3">
+            <hr>
+        </div>
+        <div class="col s12 m6 offset-m3 card-panel p-all-m">
+            <h5 class="center">Se no computador aparece "Teclado não instalado - aperte qualquer tecla para continuar", o que você faria?</h5>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">mode_edit</i>
+                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                <label for="icon_prefix2">Sua Resposta</label>
+            </div>
+            <div class="col s12 m6 offset-m3 center m-top-m">
+                <a class="btn-large col s12">Enviar</a>
             </div>
         </div>
         <div class="clearfix"></div>
-    </div>
-    <div class="col s12 m6 offset-m3 center m-top-m">
-        <a class="btn-large" ng-click="Home.step = Home.step - 1">Anterior</a>
-        <button class="btn-large" ng-click="Home.step = Home.step + 1" type="submit" name="action">Finalizar</button>
-
-    </div>
-    <div class="clearfix"></div>
 
 
 
-</section>
-
-
-
-<section class="row full-height steps wow bounceInUp" data-wow-delay="0.2s"
-data-wow-duration="1s" id="step-4" ng-show="Home.step == 5">
-<div class="col s12 m6 offset-m3">
-  <div id="logo" class="col s12" style="margin-top:0px;">
-  </div>
-  <h3 class="font-1 white-text center">Parabéns!  Você ja está participando do processo seletivo.</h3>
-</div>
-<div class="col s12 m6 offset-m3">
-  <hr>
-</div>
-<div class="col s12 m6 offset-m3 card-panel p-all-m">
-  <h5 class="center">Se no computador aparece "Teclado não instalado - aperte qualquer tecla para continuar", o que você faria?</h5>
-  <div class="input-field col s12">
-      <i class="material-icons prefix">mode_edit</i>
-      <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-      <label for="icon_prefix2">Sua Resposta</label>
-  </div>
-  <div class="col s12 m6 offset-m3 center m-top-m">
-      <a class="btn-large col s12" >Enviar</a>
-  </div>
-</div>
-<div class="clearfix"></div>
-
-
-
-</section>
+    </section>
 </form>
