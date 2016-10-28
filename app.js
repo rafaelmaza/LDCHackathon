@@ -7,7 +7,8 @@ angular
 		'ngMessages',
 		'naif.base64',
 		'facebook',
-		'ngVidBg'
+		'ngVidBg',
+		'ngDraggable'
   ])
   .config(routesConfig)
   .config(['$httpProvider', resetHeaders])

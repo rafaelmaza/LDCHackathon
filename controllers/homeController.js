@@ -376,7 +376,18 @@ function HomeController($scope, $location, helperService, $cookies, $window, $ht
     }
 
     vm.submitSignupForm = submitSignupForm;
-
+    $scope.droppedLike = [];
+    $scope.onDropLike = function(data,evt){
+        var index = $scope.droppedLike.indexOf(data);
+        $scope.droppedLike.push(data);
+        console.log($scope.droppedLike);
+    }
+     $scope.onDropDislike = function(data,evt){
+         console.log("drop success, data:", data);
+     }
+     $scope.onDropMain = function(data,evt){
+         console.log("drop success, data:", data);
+     }
     function submitSignupForm(form) {
 
       console.log(vm.form);

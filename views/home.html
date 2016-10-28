@@ -35,20 +35,32 @@
 
 </section>
 <section class="full-height steps wow bounceIn" id="step-1" ng-show="Home.step == 1">
-    <h3 class="font-1 white-text center">O que melhor te representa?<small>(Clique nas imagens para escolher)</small></h3>
+    <h3 class="font-1 white-text center">O que melhor te representa?<br><small>(Clique nas imagens para escolher)</small></h3>
     <div class="row">
         <div class="col s12 m6 offset-m3 center">
             <a class="btn-large blue" ng-click="Home.form.sexo = 'masculino'" ng-class="{sexSelected: Home.form.sexo == 'masculino'}">Masculino</a>
             <a class="btn-large pink" ng-click="Home.form.sexo = 'feminino'" ng-class="{sexSelected: Home.form.sexo == 'feminino'}">Feminino</a>
         </div>
+        <div class="col s12 m-top-m center">
+        <div class="col s12 m3 offset-m2 box card" ng-drop="true" ng-drop-success="onDropLike($data,$event)">
+          <h4>Arraste 3 ícones que te represente</h4>
+          <img ng-repeat="y in droppedLike" class="bubble-images wow bounceIn"  width="100%" height="100%" src="{{Home.peopleIconsPath + y.fileName}}" data-wow-delay="0s" />
+        </div>
+        <div class="col s12 m3 box card" ng-drop="true" ng-drop-success="onDropDislike($data,$event)">
+          <h4>Arraste 3 ícones que não te represente</h4>
+        </div>
+        <div class="col s12 m2 box card" ng-drop="true" ng-drop-success="onDropMain($data,$event)">
+          <h4>Arraste 1 ícone que mais te representa</h4>
+        </div>
+      </div>
         <hr class="col s12 m-top-m">
         <div class="col s12 m10 offset-m1 center">
 
-            <img ng-repeat="x in Home.peopleIcons" class="bubble-images wow bounceIn" ng-class="{selected: x.selected==1}" width="100%" height="100%" src="{{Home.peopleIconsPath + x.fileName}}" data-wow-delay="{{x.delay}}" ng-click="Home.peopleIconSelection(x)" />
+            <img ng-drag="true" ng-drag-data="{{x}}" ng-drag-success="onDragComplete($data,$event)" ng-center-anchor="true"  ng-repeat="x in Home.peopleIcons" class="bubble-images wow bounceIn"  width="100%" height="100%" src="{{Home.peopleIconsPath + x.fileName}}" data-wow-delay="{{x.delay}}"/>
 
         </div>
         <div class="col s12 m6 offset-m3 center m-top-m">
-            <a class="btn-large" ng-click="Home.step = Home.step + 1">Próximo</a>
+            <a class="btn-large" ng-click="Home.step = Home.step + 1" >Próximo</a>
 
         </div>
     </div>
@@ -93,7 +105,7 @@
                 <div class="input-field col s12">
                     <i class="material-icons prefix">account_circle</i>
                     <input id="icon_prefix" id="name" data-ng-model="Home.form.name" type="text" class="validate">
-                    <label for="icon_prefix">Nome completo</label>
+                    <label for="icon_prefix">Nome completo *</label>
                 </div>
                 <div class="input-field col s12">
                     <i class="material-icons prefix">phone</i>
@@ -103,10 +115,10 @@
                 <div class="input-field col s12">
                     <i class="material-icons prefix">email</i>
                     <input id="icon_telephone" data-ng-model="Home.form.email" type="email" class="validate">
-                    <label for="icon_telephone">Email</label>
+                    <label for="icon_telephone">Email *</label>
                 </div>
                 <div class="input-field col s12">
-                    <input type="date" class="datepicker" placeholder="Data de nascimento">
+                    <input type="date" class="datepicker" materialize-date-picker readonly data-ng-model="Home.form.date" placeholder="Data de nascimento *">
                 </div>
 
             </div>
@@ -146,7 +158,7 @@
 
     <div class="col s12 m6 offset-m3 center ">
         <a class="btn-large" ng-click="Home.step = Home.step - 1">Anterior</a>
-        <a class="btn-large" ng-click="Home.step = Home.step + 1">Próximo</a>
+        <button class="btn-large" ng-click="Home.step = Home.step + 1">Próximo</button>
 
     </div>
 <br>
