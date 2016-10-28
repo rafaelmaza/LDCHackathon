@@ -1,16 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Itim');
 body {}
 
-.full-height {
+form {
     background-position: bottom;
     background-repeat: repeat-x;
     background-image: url('../images/home-bg.png');
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#26a69a+0,26a69a+100&0.87+0,0.87+100 */
-  background: -moz-linear-gradient(top,  rgba(38,166,154,0.87) 0%, rgba(38,166,154,0.87) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,  rgba(38,166,154,0.87) 0%,rgba(38,166,154,0.87) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,  rgba(38,166,154,0.87) 0%,rgba(38,166,154,0.87) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de26a69a', endColorstr='#de26a69a',GradientType=0 ); /* IE6-9 */
-
+    background: -moz-linear-gradient(top, rgba(38, 166, 154, 0.87) 0%, rgba(38, 166, 154, 0.87) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(38, 166, 154, 0.87) 0%, rgba(38, 166, 154, 0.87) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(38, 166, 154, 0.87) 0%, rgba(38, 166, 154, 0.87) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#de26a69a', endColorstr='#de26a69a', GradientType=0);
+    /* IE6-9 */
 }
 
 .font-1 {
@@ -92,24 +95,27 @@ body {}
 }
 
 .p-all-s {
-  padding:10px !important;
+    padding: 10px !important;
 }
 
 .p-all-m {
-  padding:20px !important;
+    padding: 20px !important;
 }
+
 .less-p-all-m {
-      margin: -20px !important;
+    margin: -20px !important;
 }
 
 .p-all-l {
-  padding:40px !important;
+    padding: 40px !important;
 }
+
 .m-left-s {
     margin-left: 10px !important;
 }
+
 .m-left-s-revert {
-  margin-left: -10px !important;
+    margin-left: -10px !important;
 }
 
 #date-box, #terms-box {
@@ -128,12 +134,13 @@ body {}
 .text-shadow-1 {
     text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.72);
 }
+
 .spotify {
-  position: absolute;
-  left: 27px;
-  padding: 10px;
-  top:70px;
-  cursor: pointer;
+    position: absolute;
+    left: 27px;
+    padding: 10px;
+    top: 70px;
+    cursor: pointer;
 }
 
 .card.horizontal .card-image img {
@@ -141,28 +148,44 @@ body {}
     width: auto;
 }
 
-section {
-  margin-bottom: 0px;
-  position: absolute;
-  left:0px;
-  right:0px;
-  z-index: 100;
+section, form {
+    margin-bottom: 0px;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    z-index: 100;
 }
+
+form {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: scroll;
+}
+
 #spotify-tab, #spotify-control {
-  position: absolute;
-  z-index: 101;
+    position: absolute;
+    z-index: 101;
+}
+
+.profile-picture {
+    min-width: 200px !important;
+    min-height: 200px !important;
+    max-width: 200px !important;
+    max-height: 200px !important;
 }
 
 @media screen and (max-width:800px) {
-  #logo {
-    margin-top: 18px;
-    height: 81px;
-  }
-  .bubble-images {
-    width: 79px;
-    height: 79px;
-  }
-  .face-button {
-    margin-top: 10px;
-  }
+    #logo {
+        margin-top: 18px;
+        height: 81px;
+    }
+    .bubble-images {
+        width: 79px;
+        height: 79px;
+    }
+    .face-button {
+        margin-top: 10px;
+    }
 }

@@ -32,10 +32,10 @@
             <a class="btn-large center m-top-s col s12  teal accent-4" ng-click="Home.step = Home.step + 1"> Inscreva-se</a>
         </div>
     </div>
-    <br><br><br><br><br><br><br>
+
 </section>
 <section class="full-height steps wow bounceIn" id="step-1" ng-show="Home.step == 1">
-    <h3 class="font-1 white-text center">O que melhor te representa?<br><small>(Clique nas imagens para escolher)</small></h3>
+    <h3 class="font-1 white-text center">O que melhor te representa?<small>(Clique nas imagens para escolher)</small></h3>
     <div class="row">
         <div class="col s12 m6 offset-m3 center">
             <a class="btn-large blue" ng-click="Home.form.sexo = 'masculino'" ng-class="{sexSelected: Home.form.sexo == 'masculino'}">Masculino</a>
@@ -52,11 +52,11 @@
 
         </div>
     </div>
-    <br><br><br><br><br><br><br>
 
 
 
-    <br><br><br><br><br><br><br>
+
+
 
 </section>
 <section class="full-height steps wow bounceInRight" data-wow-delay="0.2s" data-wow-duration="1s" id="step-2" ng-show="Home.step > 1 && Home.step < 4">
@@ -73,7 +73,7 @@
                 <div class="col s12 m8 offset-m2">
                     <img src="assets/images/boy.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'masculino' && Home.form.picture == null">
                     <img src="assets/images/girl.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'feminino' && Home.form.picture == null">
-                    <img src="{{Home.form.picture}}" alt="" class="circle responsive-img" width="200px" height="200px" ng-show="Home.form.picture != null">
+                    <img src="{{Home.form.picture}}" alt="" class="circle responsive-img profile-picture" width="200px" height="200px" ng-show="Home.form.picture != null">
                 </div>
                 <div class="file-field input-field col s12 m6">
                     <div class="btn col s12 m12">
@@ -144,13 +144,14 @@
     </div>
 
 
-    <div class="col s12 m6 offset-m3 center m-top-m">
+    <div class="col s12 m6 offset-m3 center ">
         <a class="btn-large" ng-click="Home.step = Home.step - 1">Anterior</a>
         <a class="btn-large" ng-click="Home.step = Home.step + 1">Próximo</a>
 
     </div>
-    <br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br>
+<br>
+<br>
+
 
 </section>
 
@@ -226,8 +227,8 @@
 
     </div>
     <div class="clearfix"></div>
-    <br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br>
+
+
 
 </section>
 
@@ -238,7 +239,7 @@ data-wow-duration="1s" id="step-4" ng-show="Home.step == 5">
 <div class="col s12 m6 offset-m3">
   <div id="logo" class="col s12" style="margin-top:0px;">
   </div>
-  <h3 class="font-1 white-text center">Parabéns! <br> Você ja está participando do processo seletivo.</h3>
+  <h3 class="font-1 white-text center">Parabéns!  Você ja está participando do processo seletivo.</h3>
 </div>
 <div class="col s12 m6 offset-m3">
   <hr>
@@ -255,8 +256,8 @@ data-wow-duration="1s" id="step-4" ng-show="Home.step == 5">
   </div>
 </div>
 <div class="clearfix"></div>
-<br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br>
+
+
 
 </section>
 </form>
