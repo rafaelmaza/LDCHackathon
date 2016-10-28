@@ -35,22 +35,26 @@
 
 </section>
 <section class="full-height steps wow bounceIn" id="step-1" ng-show="Home.step == 1">
-    <h3 class="font-1 white-text center">O que melhor te representa?<br><small>(Clique nas imagens para escolher)</small></h3>
+    <h3 class="font-1 white-text center">O que melhor te representa?</h3>
     <div class="row">
         <div class="col s12 m6 offset-m3 center">
             <a class="btn-large blue" ng-click="Home.form.sexo = 'masculino'" ng-class="{sexSelected: Home.form.sexo == 'masculino'}">Masculino</a>
             <a class="btn-large pink" ng-click="Home.form.sexo = 'feminino'" ng-class="{sexSelected: Home.form.sexo == 'feminino'}">Feminino</a>
         </div>
-        <div class="col s12 m-top-m center">
+        <div class="col s12 m-top-l center">
         <div class="col s12 m3 offset-m2 box card" ng-drop="true" ng-drop-success="onDropLike($data,$event)">
-          <h4>Arraste 3 ícones que te represente</h4>
+          <h4 class="white-text">Arraste 3 ícones que te represente</h4>
           <img ng-repeat="y in droppedLike" class="bubble-images wow bounceIn"  width="100%" height="100%" src="{{Home.peopleIconsPath + y.fileName}}" data-wow-delay="0s" />
         </div>
         <div class="col s12 m3 box card" ng-drop="true" ng-drop-success="onDropDislike($data,$event)">
-          <h4>Arraste 3 ícones que não te represente</h4>
+          <h4 class="white-text">Arraste 3 ícones que não te represente</h4>
+          <img ng-repeat="z in droppedDislike" class="bubble-images wow bounceIn"  width="100%" height="100%" src="{{Home.peopleIconsPath + z.fileName}}" data-wow-delay="0s" />
+
         </div>
         <div class="col s12 m2 box card" ng-drop="true" ng-drop-success="onDropMain($data,$event)">
-          <h4>Arraste 1 ícone que mais te representa</h4>
+          <h4 class="white-text">Arraste 1 ícone que mais te representa</h4>
+          <img ng-repeat="h in droppedMain" class="bubble-images wow bounceIn"  width="100%" height="100%" src="{{Home.peopleIconsPath + h.fileName}}" data-wow-delay="0s" />
+
         </div>
       </div>
         <hr class="col s12 m-top-m">

@@ -377,21 +377,46 @@ function HomeController($scope, $location, helperService, $cookies, $window, $ht
 
     vm.submitSignupForm = submitSignupForm;
     $scope.droppedLike = [];
+    $scope.droppedDislike = [];
+    $scope.droppedMain = [];
     $scope.onDropLike = function(data,evt){
+      if($scope.droppedLike.length > 2) {
+        showMessage("Só pode selecionar 3");
+        return;
+      }
         var index = $scope.droppedLike.indexOf(data);
         $scope.droppedLike.push(data);
         console.log($scope.droppedLike);
     }
      $scope.onDropDislike = function(data,evt){
-         console.log("drop success, data:", data);
+       if($scope.droppedLike.length > 2) {
+         showMessage("Só pode selecionar 3");
+         return;
+       }
+       var index = $scope.droppedDislike.indexOf(data);
+       $scope.droppedDislike.push(data);
+       console.log($scope.droppedDislike);
      }
      $scope.onDropMain = function(data,evt){
-         console.log("drop success, data:", data);
+       if($scope.droppedLike.length > 0) {
+         showMessage("Só pode selecionar 1");
+         return;
+       }
+       var index = $scope.droppedMain.indexOf(data);
+       $scope.droppedMain.push(data);
+       console.log($scope.droppedMain);
+
      }
     function submitSignupForm(form) {
 
       console.log(vm.form);
 
+    }
+
+
+    vm.showMessage = showMessage;
+    function showMessage(message) {
+      $window.alert(message);
     }
 
 }
