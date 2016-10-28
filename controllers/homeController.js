@@ -375,4 +375,12 @@ function HomeController($scope, $location, helperService, $cookies, $window, $ht
       vm.form.picture = "data:image/png;base64," + $scope.base64Picture.base64;
     }
 
+    vm.submitSignupForm = submitSignupForm;
+
+    function submitSignupForm(form) {
+
+      console.log(vm.form);
+
+    }
+
 }
