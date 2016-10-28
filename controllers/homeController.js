@@ -395,11 +395,30 @@ function HomeController($scope, $location, helperService, $cookies, $window, $ht
         console.log($scope.droppedMain);
 
     }
+    $scope.removeDroppedLike = function(data) {
+        for (var i = 0; i < $scope.droppedLike.length; i++) {
+          if($scope.droppedLike[i].fileName == data.fileName) {
+            $scope.droppedLike.splice(i,1);
+          }
+        }
+    }
+    $scope.removeDroppedDislike = function(data) {
+      for (var i = 0; i < $scope.droppedDislike.length; i++) {
+        if($scope.droppedDislike[i].fileName == data.fileName) {
+          $scope.droppedDislike.splice(i,1);
+        }
+      }
+    }
+    $scope.removeDroppedMain = function(data) {
+      for (var i = 0; i < $scope.droppedMain.length; i++) {
+        if($scope.droppedMain[i].fileName == data.fileName) {
+          $scope.droppedMain.splice(i,1);
+        }
+      }
+    }
 
     function submitSignupForm(form) {
-
         console.log(vm.form);
-
     }
 
 

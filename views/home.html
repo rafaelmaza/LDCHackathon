@@ -45,7 +45,7 @@
                 <div class="col s12 m3 offset-m2 box card" ng-drop="true" ng-drop-success="onDropLike($data,$event)">
                     <h4 class="white-text hide-on-med-and-down">Arraste 3 ícones que te represente</h4>
                     <h4 class="white-text hide-on-med-and-up">Clique em 3 ícones que te represente</h4>
-                    <img ng-repeat="y in droppedLike" class="bubble-images" width="100%" height="100%" src="{{Home.peopleIconsPath + y.fileName}}" />
+                    <img ng-repeat="y in droppedLike" ng-click="removeDroppedLike(y)" class="bubble-images" width="100%" height="100%" src="{{Home.peopleIconsPath + y.fileName}}" />
                 </div>
                 <div class="col s12 hide-on-med-and-up no-padding">
                   <img ng-click="onDropLike(xx,null)" ng-repeat="xx in Home.peopleIcons" class="bubble-images bubble-little wow bounceIn " width="100%" height="100%" src="{{Home.peopleIconsPath + xx.fileName}}" data-wow-delay="{{xx.delay}}"/>
@@ -54,7 +54,7 @@
                 <div class="col s12 m3 box card" ng-drop="true" ng-drop-success="onDropDislike($data,$event)">
                     <h4 class="white-text hide-on-med-and-down">Arraste 3 ícones que não te represente</h4>
                     <h4 class="white-text hide-on-med-and-up">Clique em 3 ícones que não te represente</h4>
-                    <img ng-repeat="z in droppedDislike" class="bubble-images" width="100%" height="100%" src="{{Home.peopleIconsPath + z.fileName}}" />
+                    <img ng-repeat="z in droppedDislike" ng-click="removeDroppedDislike(z)" class="bubble-images" width="100%" height="100%" src="{{Home.peopleIconsPath + z.fileName}}" />
 
                 </div>
                 <div class="col s12 hide-on-med-and-up no-padding">
@@ -63,7 +63,7 @@
                 <div class="col s12 m2 box card" ng-drop="true" ng-drop-success="onDropMain($data,$event)">
                     <h4 class="white-text hide-on-med-and-down">Arraste 1 ícone que mais te represente</h4>
                     <h4 class="white-text hide-on-med-and-up">Clique em 1 ícone que mais te represente</h4>
-                    <img ng-repeat="h in droppedMain" class="bubble-images" width="100%" height="100%" src="{{Home.peopleIconsPath + h.fileName}}"  />
+                    <img ng-repeat="h in droppedMain" ng-click="removeDroppedMain(h)" class="bubble-images" width="100%" height="100%" src="{{Home.peopleIconsPath + h.fileName}}"  />
 
                 </div>
                 <div class="col s12 hide-on-med-and-up no-padding">
