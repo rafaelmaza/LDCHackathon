@@ -1,6 +1,6 @@
 angular
     .module('hackathon')
-    .controller('HomeController', ['$scope',  '$location', 'helperService', '$cookies', '$window', '$http', 'Facebook', HomeController])
+    .controller('HomeController', ['$scope', '$location', 'helperService', '$cookies', '$window', '$http', 'Facebook', HomeController])
     .config(['$routeProvider', routes]);
 
 function routes($routeProvider) {
@@ -13,83 +13,85 @@ function routes($routeProvider) {
 }
 
 function HomeController($scope, $location, helperService, $cookies, $window, $http, Facebook) {
-  var vm = this;
-  vm.form = [];
-  $scope.base64Picture = "";
+    var vm = this;
+    vm.form = [];
+    $scope.base64Picture = "";
 
 
-  $scope.resources = [
-              'assets/media/hack.mp4',
-              'assets/media/hack.mp4'
-          ];
-          $scope.poster = 'http://placehold.it/2000&text=you%20may%20want%20to%20have%20a%20poster';
-          $scope.fullScreen = true;
-          $scope.muted = true;
-          $scope.zIndex = '0';
-          $scope.playInfo = {};
-          $scope.pausePlay = true;
+    $scope.resources = [
+        'assets/media/hack.mp4',
+        'assets/media/hack.mp4'
+    ];
+    $scope.poster = 'http://placehold.it/2000&text=you%20may%20want%20to%20have%20a%20poster';
+    $scope.fullScreen = true;
+    $scope.muted = true;
+    $scope.zIndex = '0';
+    $scope.playInfo = {};
+    $scope.pausePlay = true;
 
 
 
 
-  /**
-   * IntentLogin
-   */
-  $scope.IntentLogin = function() {
-      Facebook.getLoginStatus(function(response) {
-          if (response.status == 'connected') {
-              $scope.logged = true;
-              $scope.me();
-          } else
-              $scope.login();
-      });
-  };
+    /**
+     * IntentLogin
+     */
+    $scope.IntentLogin = function() {
+        Facebook.getLoginStatus(function(response) {
+            if (response.status == 'connected') {
+                $scope.logged = true;
+                $scope.me();
+            } else
+                $scope.login();
+        });
+    };
 
-  /**
-   * Login
-   */
-  $scope.login = function() {
-      Facebook.login(function(response) {
-          if (response.status == 'connected') {
-              $scope.logged = true;
-              $scope.me();
-          }
+    /**
+     * Login
+     */
+    $scope.login = function() {
+        Facebook.login(function(response) {
+            if (response.status == 'connected') {
+                $scope.logged = true;
+                $scope.me();
+            }
 
-      });
-  };
+        });
+    };
 
-  /**
-   * me
-   */
-  $scope.me = function() {
-      Facebook.api('/me?fields=name,email,age_range,gender,locale,picture',{fields: 'email,name,gender,locale,age_range,picture'}, function(response) {
-          $scope.$apply(function() {
-              $scope.user = response;
-              console.log(response);
-              vm.form.name = $scope.user.name;
-              vm.form.email = $scope.user.email;
-              vm.form.picture = "https://graph.facebook.com/" + $scope.user.id + "/picture?type=large";
-          });
-      });
-  };
+    /**
+     * me
+     */
+    $scope.me = function() {
+        Facebook.api('/me?fields=name,email,age_range,gender,locale,picture', {
+            fields: 'email,name,gender,locale,age_range,picture'
+        }, function(response) {
+            $scope.$apply(function() {
+                $scope.user = response;
+                console.log(response);
+                vm.form.name = $scope.user.name;
+                vm.form.email = $scope.user.email;
+                vm.form.picture = "https://graph.facebook.com/" + $scope.user.id + "/picture?type=large";
+            });
+        });
+    };
 
 
-  /**
-   * Taking approach of Events
-   */
-  $scope.$on('Facebook:statusChange', function(ev, data) {
-      console.log('Status: ', data);
-      if (data.status == 'connected') {
-          $scope.$apply(function() {
-            console.log("logou");
-            $scope.me();
-          });
-      } else {
-          $scope.$apply(function() {
-              console.log("Não Logou");
-          });
-      }
-  });
+    /**
+     * Taking approach of Events
+     */
+    $scope.$on('Facebook:statusChange', function(ev, data) {
+        console.log('Status: ', data);
+        if (data.status == 'connected') {
+            $scope.$apply(function() {
+                console.log("logou");
+                $scope.me();
+            });
+        } else {
+            $scope.$apply(function() {
+                console.log("Não Logou");
+            });
+        }
+    });
 
     $('.datepicker').pickadate({
         selectMonths: true,
@@ -134,7 +136,7 @@ function HomeController($scope, $location, helperService, $cookies, $window, $ht
 
     vm.form.sexo = "masculino";
     this.peopleIconsPath = helperService.peopleIconsPath
-    this.peopleIcons =[{
+    this.peopleIcons = [{
         fileName: "icon1.png",
         for: 3,
         delay: "0.2s",
@@ -189,164 +191,137 @@ function HomeController($scope, $location, helperService, $cookies, $window, $ht
         for: 3,
         delay: "0.5s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon12.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon13.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon14.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon15.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon16.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon17.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon18.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon19.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon20.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon21.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon22.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon23.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon24.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon25.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon26.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon27.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon28.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon29.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon30.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon31.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon32.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon33.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon34.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon35.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon36.png",
         for: 3,
         delay: "1s",
         selected: 0
-    },
-    {
+    }, {
         fileName: "icon37.png",
         for: 3,
         delay: "1s",
         selected: 0
-    }
-  ];
+    }];
 
     this.peopleIconSelection = peopleIconSelection
 
@@ -361,62 +336,77 @@ function HomeController($scope, $location, helperService, $cookies, $window, $ht
     this.spotifyChange = spotifyChange;
 
     function spotifyChange() {
-      if(this.spotify) {
-        this.spotify = false;
-      }
-      else {
-        this.spotify = true;
-      }
+        if (this.spotify) {
+            this.spotify = false;
+        } else {
+            this.spotify = true;
+        }
     }
 
     vm.changeImage = changeImage;
 
     function changeImage() {
-      vm.form.picture = "data:image/png;base64," + $scope.base64Picture.base64;
+        vm.form.picture = "data:image/png;base64," + $scope.base64Picture.base64;
     }
 
     vm.submitSignupForm = submitSignupForm;
     $scope.droppedLike = [];
     $scope.droppedDislike = [];
     $scope.droppedMain = [];
-    $scope.onDropLike = function(data,evt){
-      if($scope.droppedLike.length > 2) {
-        showMessage("Só pode selecionar 3");
-        return;
-      }
+    $scope.onDropLike = function(data, evt) {
+        if ($scope.droppedLike.length > 2) {
+            showMessage("Só pode selecionar 3");
+            return;
+        }
+        var result = $.grep($scope.droppedLike, function(e) {
+            return e.fileName == data.fileName;
+        });
+        if (result.length > 0) {
+            showMessage("Você já adicionou este ícone");
+            return;
+        }
         var index = $scope.droppedLike.indexOf(data);
         $scope.droppedLike.push(data);
         console.log($scope.droppedLike);
     }
-     $scope.onDropDislike = function(data,evt){
-       if($scope.droppedLike.length > 2) {
-         showMessage("Só pode selecionar 3");
-         return;
-       }
-       var index = $scope.droppedDislike.indexOf(data);
-       $scope.droppedDislike.push(data);
-       console.log($scope.droppedDislike);
-     }
-     $scope.onDropMain = function(data,evt){
-       if($scope.droppedLike.length > 0) {
-         showMessage("Só pode selecionar 1");
-         return;
-       }
-       var index = $scope.droppedMain.indexOf(data);
-       $scope.droppedMain.push(data);
-       console.log($scope.droppedMain);
+    $scope.onDropDislike = function(data, evt) {
+        if ($scope.droppedDislike.length > 2) {
+            showMessage("Só pode selecionar 3");
+            return;
+        }
+        var result = $.grep($scope.droppedDislike, function(e) {
+            return e.fileName == data.fileName;
+        });
+        if (result.length > 0) {
+            showMessage("Você já adicionou este ícone");
+            return;
+        }
+        var index = $scope.droppedDislike.indexOf(data);
+        $scope.droppedDislike.push(data);
+        console.log($scope.droppedDislike);
+    }
+    $scope.onDropMain = function(data, evt) {
+        if ($scope.droppedMain.length > 0) {
+            showMessage("Só pode selecionar 1");
+            return;
+        }
+        var index = $scope.droppedMain.indexOf(data);
+        $scope.droppedMain.push(data);
+        console.log($scope.droppedMain);
 
-     }
+    }
+
     function submitSignupForm(form) {
 
-      console.log(vm.form);
+        console.log(vm.form);
 
     }
 
 
     vm.showMessage = showMessage;
+
     function showMessage(message) {
-      $window.alert(message);
+        $window.alert(message);
     }
 
 }
