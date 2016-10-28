@@ -1,4 +1,4 @@
-<vid-bg resources="resources" poster="poster" full-screen="fullScreen" muted="muted" z-index="zIndex" play-info="playInfo" pause-play="pausePlay"></vid-bg>
+<vid-bg resources="resources" class="hide-on-med-and-down" poster="poster" full-screen="fullScreen" muted="muted" z-index="zIndex" play-info="playInfo" pause-play="pausePlay"></vid-bg>
 <form name="Home.signupForm" data-ng-submit="Home.submitSignupForm(Home.form)">
   <div id="spotify-tab" class="spotify card-panel hide-on-med-and-down" ng-show="Home.spotify">
   <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3Acpvbruno%3Aplaylist%3A7784bBZRZBteWOtutqAUVi" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
@@ -67,14 +67,15 @@
             <p class="m-top-m white-text">Na Johnson & Johnson desenvolvemos aplicações para uso médico, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor, libero quis consectetur porta, tellus felis ultricies tellus, tincidunt fringilla risus felis id elit.
                 Maecenas placerat pretium </p>
         </div>-->
-        <div class="col s12 m4 offset-m4  card-panel offset-m1 p-all-m ">
+        <div class="col s12 m6 offset-m3">
+        <div class="col s12 m10 card-panel offset-m1 p-all-m ">
             <div class="center">
                 <div class="col s12 m8 offset-m2">
                     <img src="assets/images/boy.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'masculino' && Home.form.picture == null">
                     <img src="assets/images/girl.png" alt="" class="circle responsive-img" ng-show="Home.form.sexo == 'feminino' && Home.form.picture == null">
                     <img src="{{Home.form.picture}}" alt="" class="circle responsive-img" width="200px" height="200px" ng-show="Home.form.picture != null">
                 </div>
-                <div class="file-field input-field col s6">
+                <div class="file-field input-field col s12 m6">
                     <div class="btn col s12 m12">
                         <span>Selecione sua Imagem</span>
                         <input class="form-control validate" data-ng-model="base64Picture" ng-change="Home.changeImage()" type="file" name="profilePicture" base-sixty-four-input maxsize="3000" accept="image/*"></input>
@@ -84,7 +85,7 @@
                         <input class="file-path validate" type="text" placeholder="Adicione sua imagem de perfil" style="display:none;">
                     </div>
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12 m6">
                   <button class="face-button white-text" ng-click="IntentLogin()">Importar do facebook</button>
                 </div>
             </div>
@@ -112,7 +113,9 @@
 
 
         </div>
-        <div class="card-panel p-all-m col s12 m3 offset-m1 wow bounceInRight" ng-show="Home.step == 3">
+      </div>
+      <div class="col s12 m3">
+        <div class="card-panel p-all-m col s12   wow bounceInRight" ng-show="Home.step == 3">
             <h4>O que gostaria de nos contar sobre você?</h4>
 
             <div class="input-field col s12">
@@ -137,6 +140,7 @@
 
 
         </div>
+      </div>
     </div>
 
 
