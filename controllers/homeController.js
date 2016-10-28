@@ -19,8 +19,8 @@ function HomeController($scope, $location, helperService, $cookies, $window, $ht
 
 
   $scope.resources = [
-              'assets/media/back.mp4',
-              'assets/media/back.mp4'
+              'assets/media/hack.mp4',
+              'assets/media/hack.mp4'
           ];
           $scope.poster = 'http://placehold.it/2000&text=you%20may%20want%20to%20have%20a%20poster';
           $scope.fullScreen = true;
